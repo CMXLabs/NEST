@@ -133,6 +133,10 @@ namespace Nest
 				return Enumerable.Empty<F>();
 			
 			var facet = this.Facets[fieldName];
+
+            if (facet is DateFactHistogramFacet)
+				return ((DateFactHistogramFacet)facet).Items.Cast<F>();
+
 			if (facet is DateHistogramFacet)
 				return ((DateHistogramFacet)facet).Items.Cast<F>();
 

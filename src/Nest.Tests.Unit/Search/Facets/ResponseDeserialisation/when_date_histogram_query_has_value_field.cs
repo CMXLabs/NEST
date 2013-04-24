@@ -12,7 +12,7 @@ namespace Nest.Tests.Unit.Search.Facets.ResponseDeserialisation
         {
             var widget1Histogram = new[]
                                    {
-                                       new DateEntry
+                                       new DateEntryFacts
                                        {
                                            Count = 5181,
                                            Max = 7.9899997711181641,
@@ -22,7 +22,7 @@ namespace Nest.Tests.Unit.Search.Facets.ResponseDeserialisation
                                            Total = 41396.18881416321,
                                            TotalCount = 5181
                                        },
-                                       new DateEntry
+                                       new DateEntryFacts
                                        {
                                            Count = 5509,
                                            Max = 7.9899997711181641,
@@ -36,7 +36,7 @@ namespace Nest.Tests.Unit.Search.Facets.ResponseDeserialisation
 
             var widget2Histogram = new[]
                                    {
-                                       new DateEntry
+                                       new DateEntryFacts
                                        {
                                            Count = 173,
                                            Max = 7.989999771118164,
@@ -46,7 +46,7 @@ namespace Nest.Tests.Unit.Search.Facets.ResponseDeserialisation
                                            Total = 1382.2699604034424,
                                            TotalCount = 173
                                        },
-                                       new DateEntry
+                                       new DateEntryFacts
                                        {
                                            Count = 162,
                                            Max = 7.989999771118164,
@@ -72,8 +72,8 @@ namespace Nest.Tests.Unit.Search.Facets.ResponseDeserialisation
 
             var response = client.Search(descriptor => descriptor);
 
-            Assert.That(response.FacetItems<DateEntry>("widget_1:histogram"), DateEntriesConstraint.Sequence(widget1Histogram));
-            Assert.That(response.FacetItems<DateEntry>("widget_2:histogram"), DateEntriesConstraint.Sequence(widget2Histogram));
+            Assert.That(response.FacetItems<DateEntryFacts>("widget_1:histogram"), DateEntryFactsConstraint.Sequence(widget1Histogram));
+            Assert.That(response.FacetItems<DateEntryFacts>("widget_2:histogram"), DateEntryFactsConstraint.Sequence(widget2Histogram));
         }
     }
 }

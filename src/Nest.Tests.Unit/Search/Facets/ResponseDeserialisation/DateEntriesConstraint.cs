@@ -15,4 +15,17 @@ namespace Nest.Tests.Unit.Search.Facets.ResponseDeserialisation
             return new DateEntriesConstraint(dateEntries);
         }
     }
+
+    internal class DateEntryFactsConstraint : EqualConstraint
+    {
+        private DateEntryFactsConstraint(object expected) : base(expected)
+        {
+            this.Using<IEnumerable<DateEntryFacts>>(new DateEntryFactsSequenceEqualityComparer());
+        }
+
+        internal static DateEntryFactsConstraint Sequence(IEnumerable<DateEntryFacts> dateEntries)
+        {
+            return new DateEntryFactsConstraint(dateEntries);
+        }
+    }
 }

@@ -10,22 +10,36 @@ namespace Nest
     {
         [JsonProperty("entries")]
         public IEnumerable<DateEntry> Items { get; internal set; }
-
     }
+
+    [JsonObject]
+    public class DateFactHistogramFacet : Facet, IFacet<DateEntryFacts>
+    {
+        [JsonProperty("entries")]
+        public IEnumerable<DateEntryFacts> Items { get; internal set; }
+    }
+    
     public class DateEntry : FacetItem
     {
         [JsonConverter(typeof(UnixDateTimeConverter))]
         [JsonProperty("time")]
         public DateTime Time { get; internal set; }
+    }
+
+    public class DateEntryFacts : FacetItem
+    {
+        [JsonConverter(typeof(UnixDateTimeConverter))]
+        [JsonProperty("time")]
+        public DateTime Time { get; internal set; }
         [JsonProperty("total")]
-        public double? Total { get; internal set; }
+        public double Total { get; internal set; }
         [JsonProperty("total_count")]
-        public double? TotalCount { get; internal set; }
+        public double TotalCount { get; internal set; }
         [JsonProperty("min")]
-        public double? Min { get; internal set; }
+        public double Min { get; internal set; }
         [JsonProperty("max")]
-        public double? Max { get; internal set; }
+        public double Max { get; internal set; }
         [JsonProperty("mean")]
-        public double? Mean { get; internal set; }
+        public double Mean { get; internal set; }
     }
 }
