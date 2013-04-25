@@ -49,7 +49,7 @@ namespace Nest.Resolvers.Converters
                     case "date_histogram":
 
                         var firstEntry = o.Value<JArray>("entries")[0];
-                        var dateHistogramType = typeof (DateFactHistogramFacet);
+                        var dateHistogramType = typeof (DateFactsHistogramFacet);
 
                         if (string.IsNullOrWhiteSpace(firstEntry.Value<string>("mean")))
                         {

@@ -13,7 +13,7 @@ namespace Nest
     }
 
     [JsonObject]
-    public class DateFactHistogramFacet : Facet, IFacet<DateEntryFacts>
+    public class DateFactsHistogramFacet : Facet, IFacet<DateEntryFacts>
     {
         [JsonProperty("entries")]
         public IEnumerable<DateEntryFacts> Items { get; internal set; }

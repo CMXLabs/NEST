@@ -132,33 +132,9 @@ namespace Nest
 				|| !this.Facets.ContainsKey(fieldName))
 				return Enumerable.Empty<F>();
 			
-			var facet = this.Facets[fieldName];
-
-            if (facet is DateFactHistogramFacet)
-				return ((DateFactHistogramFacet)facet).Items.Cast<F>();
-
-			if (facet is DateHistogramFacet)
-				return ((DateHistogramFacet)facet).Items.Cast<F>();
-
-			if (facet is DateRangeFacet)
-				return ((DateRangeFacet)facet).Items.Cast<F>();
-
-			if (facet is GeoDistanceFacet)
-				return ((GeoDistanceFacet)facet).Items.Cast<F>();
-
-			if (facet is HistogramFacet)
-				return ((HistogramFacet)facet).Items.Cast<F>();
-
-			if (facet is RangeFacet)
-				return ((RangeFacet)facet).Items.Cast<F>();
-
-			if (facet is TermFacet)
-				return ((TermFacet)facet).Items.Cast<F>();
-
-			if (facet is TermStatsFacet)
-				return ((TermStatsFacet)facet).Items.Cast<F>();
-
-			return Enumerable.Empty<F>();
+			var facet = this.Facets[fieldName] as IFacet<F>;
+            //return an empty enumeration? Or throw an exception (FieldNotFoundException, msg: Field was type X not requested Y)
+            return null == facet ? Enumerable.Empty<F>() : facet.Items;
 		}
 		
 		public IEnumerable<Highlight> Highlights
